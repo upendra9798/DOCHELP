@@ -4,3 +4,7 @@ body {
   background-color: #efffbe; /* similar to your image */
   scroll-behavior: smooth;
 }
+#root {
+  height: 100%;
+  margin: 0;
+}
