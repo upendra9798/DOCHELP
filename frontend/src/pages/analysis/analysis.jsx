@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 const PhotoUploadTab = () => {
   const [uploadedImages, setUploadedImages] = useState([]);
@@ -133,6 +133,30 @@ const PhotoUploadTab = () => {
     }
   };
 
+  // const user = JSON.parse(localStorage.getItem("user"));
+  // const firstName = user?.fullName?.split(" ")[0]; // Safely extract first name
+  const [firstName, setFirstName] = useState("");
+
+  useEffect(() => {
+  const storedUser = localStorage.getItem("user");
+  console.log("Stored user from localStorage:", storedUser); // DEBUG
+
+  if (storedUser) {
+    try {
+      const user = JSON.parse(storedUser);
+      console.log("Parsed user:", user); // DEBUG
+
+      const name = user?.fullName?.split(" ")[0];
+      console.log("Extracted first name:", name); // DEBUG
+
+      if (name) setFirstName(name);
+    } catch (err) {
+      console.error("Failed to parse user:", err);
+    }
+  }
+}, []);
+
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 pt-24 pb-16 px-4">
       <div className="max-w-6xl mx-auto">
@@ -141,6 +165,14 @@ const PhotoUploadTab = () => {
           <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent">
             Skin Health Analysis
           </h1>
+
+          {/* Greeting if user is logged in */}
+          {/* {firstName && (
+            <p className="text-xl font-semibold text-emerald-700 mb-2">
+              Hi, {firstName}! 👋
+            </p>
+          )} */}
+
           <p className="text-gray-600 text-lg max-w-3xl mx-auto">
             Upload clear photos of your skin condition for AI-powered analysis. Our system will provide insights and recommendations based on visual assessment.
           </p>

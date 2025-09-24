@@ -19,7 +19,7 @@ const Navbar = () => {
 
   return (
     <header className="bg-gradient-to-r from-lime-50 via-green-50 to-emerald-50 backdrop-blur-md shadow-lg fixed top-0 left-0 w-full z-50 border-b border-green-100">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between mr-50 ">
         {/* Logo */}
         <button
           onClick={() => handleNavClick("/")}
@@ -88,27 +88,22 @@ const Navbar = () => {
         </nav>
 
         {/* Right Side Icons */}
-        <div className="flex items-center gap-4">
-          <div className="relative group cursor-pointer">
-            <span className="text-2xl group-hover:text-emerald-600 transition-all duration-300 transform group-hover:scale-110">🛒</span>
-            <div className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              0
-            </div>
-            <div className="absolute inset-0 bg-emerald-200 rounded-full blur-md opacity-0 group-hover:opacity-30 transition-opacity duration-300 scale-150"></div>
-          </div>
+        {/* Right Side Icons */}
+<div className="flex items-center space-x-4">
+  {localStorage.getItem("user") && (
+    <button
+      onClick={() => {
+        localStorage.removeItem("user");
+        navigate("/");
+      }}
+      className="px-4 py-2 rounded-full bg-red-500 text-white font-medium hover:bg-red-600 transition duration-300"
+    >
+      Logout
+    </button>
+  )}
+</div>
 
-          {/* Hamburger */}
-          <button
-            className="md:hidden relative w-10 h-10 rounded-full bg-emerald-50 hover:bg-emerald-100 transition-all duration-300 flex items-center justify-center group"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            <div className="flex flex-col gap-1">
-              <span className={`block w-5 h-0.5 bg-gray-700 transition-all duration-300 ${isMenuOpen ? "rotate-45 translate-y-1.5" : ""}`}></span>
-              <span className={`block w-5 h-0.5 bg-gray-700 transition-all duration-300 ${isMenuOpen ? "opacity-0" : ""}`}></span>
-              <span className={`block w-5 h-0.5 bg-gray-700 transition-all duration-300 ${isMenuOpen ? "-rotate-45 -translate-y-1.5" : ""}`}></span>
-            </div>
-          </button>
-        </div>
+       
       </div>
 
       {/* Overlay */}

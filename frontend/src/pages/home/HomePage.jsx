@@ -62,6 +62,8 @@ const HomePage = () => {
       url: "https://instagram.com",
     },
   ];
+  // localStorage.setItem("user", JSON.stringify(userData))
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50">
@@ -84,7 +86,14 @@ const HomePage = () => {
               professionals and fellow users.
             </p>
             <button
-              onClick={() => navigate("/join")}
+              onClick={() => {
+                const user = JSON.parse(localStorage.getItem("user"));
+                if (user && user._id) {
+                  navigate("/analysis");
+                } else {
+                  navigate("/join");
+                }
+              }}
               className="bg-gradient-to-r from-emerald-600 to-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 hover:from-emerald-700 hover:to-green-700"
             >
               Get Started Today

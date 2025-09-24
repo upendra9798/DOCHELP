@@ -7,9 +7,6 @@ import connectMongoDB from './db/connectMongoDB.js'
 
 dotenv.config()
 
-
-
-
 const app = express()
 const PORT = process.env.PORT || 6000
 // const __dirname = path.resolve();
